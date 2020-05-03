@@ -1,4 +1,5 @@
 import random
+import time
 
 class SAT:
     """
@@ -82,8 +83,20 @@ class SAT:
                 return True
         return False
 
+# '../sat_problems/4-queens.txt'
+# '../sat_problems/generated_3-CSP_m=7500_n=5000.txt'
+#'../sat_problems/generated_3-CSP_m=10000_n=5000.txt'
+#'../sat_problems/generated_3-CSP_m=12500_n=5000.txt'
+#'../sat_problems/generated_3-CSP_m=15000_n=5000.txt'
+
 test = SAT()
-test.load_from_file('3-queens.txt')
-result = test.walk_sat(0.5, 1000)
+test.load_from_file('../sat_problems/4-queens.txt')
+
+start = time.time()
+result = test.walk_sat(0.75, 200000)
+end = time.time()
+
 if result is not None:
     print([var for var in result.keys() if result[var]])
+
+print(f"Python Walk-SAT took {end-start} seconds to run")
